@@ -1,7 +1,7 @@
 # Kafka messages sending DEMO
 There are 2 services:
 - Order-service
-- Order-status-service
+- [Order-status-service](https://github.com/Kofa-Yoh/6.5-spring-boot-kafka-order-status-service) (will be starting via Docker)
 
 Steps:
 1. User send POST-request with product (see [Endpoints](#endpoints)) in Order-service. 
