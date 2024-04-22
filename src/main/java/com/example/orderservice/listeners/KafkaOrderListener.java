@@ -18,7 +18,7 @@ public class KafkaOrderListener {
 
     @KafkaListener(topics = "${app.kafka.kafkaOrderStatusTopic}",
             groupId = "${app.kafka.kafkaOrderGroupId}",
-            containerFactory = "orderStatusConcurrentKafkaListenerContainerFactory")
+            containerFactory = "kafkaListenerContainerFactory")
     public void listen(@Payload OrderStatus message,
                        @Header(value = KafkaHeaders.RECEIVED_KEY, required = false) UUID key,
                        @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,

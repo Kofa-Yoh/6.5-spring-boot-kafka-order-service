@@ -26,7 +26,7 @@ public class KafkaConfig {
     private String kafkaOrderGroupId;
 
     @Bean
-    public ProducerFactory<String, Object> orderEventProducerFactory(ObjectMapper objectMapper) {
+    public ProducerFactory<String, Object> producerFactory(ObjectMapper objectMapper) {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -37,12 +37,12 @@ public class KafkaConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Object> orderEventKafkaTemplate(ProducerFactory<String, Object> orderEventProducerFactory) {
+    public KafkaTemplate<String, Object> kafkaTemplate(ProducerFactory<String, Object> orderEventProducerFactory) {
         return new KafkaTemplate<>(orderEventProducerFactory);
     }
 
     @Bean
-    public ConsumerFactory<String, Object> orderStatusConsumerFactory(ObjectMapper objectMapper) {
+    public ConsumerFactory<String, Object> consumerFactory(ObjectMapper objectMapper) {
         Map<String, Object> config = new HashMap<>();
 
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
@@ -55,11 +55,11 @@ public class KafkaConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Object> orderStatusConcurrentKafkaListenerContainerFactory(
-            ConsumerFactory<String, Object> orderStatusConsumerFactory
+    public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(
+            ConsumerFactory<String, Object> consumerFactory
     ) {
         ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(orderStatusConsumerFactory);
+        factory.setConsumerFactory(consumerFactory);
 
         return factory;
     }
