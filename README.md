@@ -45,3 +45,8 @@ POST http://localhost:8080/api/v1/order/kafka/send
     "quantity":"100"
 }
 ```
+
+Tests
+```
+./gradlew test
+```
